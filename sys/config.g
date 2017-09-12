@@ -28,7 +28,7 @@ M92 X100 Y100 Z1600 E419 ; Set steps per mm
 M566 X900 Y900 Z120 E120 ; Set maximum instantaneous speed changes (mm/min)
 M203 X6000 Y6000 Z180 E100 ; Set maximum speeds (mm/min)
 M201 X50 Y50 Z250 E100 ; Set accelerations (mm/s^2)
-M906 X800 Y800 Z1400 E1800 I30 ; Set motor currents (mA) and motor idle factor in per cent
+M906 X800 Y800 Z1000 E1800 I30 ; Set motor currents (mA) and motor idle factor in per cent
 M84 S30 ; Set idle timeout
 
 ; Heaters
