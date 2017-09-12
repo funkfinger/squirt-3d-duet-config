@@ -48,10 +48,12 @@ G10 P0 R0 S0 ; Set initial tool 0 active and standby temperatures to 0C
 ;M553 P255.255.0.0                 ; Netmask
 
 M550 PSquirt ; Set machine name
-;M552 S1 ; Enable network
+M551 Preprap ; Machine password (used when you connect Duet Web Control or via FTP)
+M552 S1 ; Enable network
 ; Access point is configured manually via M587 by the user
 M586 P0 S1 ; Enable HTTP
-M586 P1 S0 ; Disable FTP
+;M586 P1 S0 ; Disable FTP
+M586 P1 S1 ; R21 T1; Enable FTP
 M586 P2 S0 ; Disable Telnet
 
 ; Fans
