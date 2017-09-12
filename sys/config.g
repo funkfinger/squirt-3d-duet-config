@@ -10,25 +10,25 @@ G90 ; Send absolute coordinates...
 M83 ; ...but relative extruder moves
 M555 P1 ; Set firmware compatibility to look like RepRapFirmare
 M208 X0 Y0 Z0 S1 ; Set axis minima
-M208 X210 Y210 Z210 S0 ; Set axis maxima
+M208 X210 Y200 Z210 S0 ; Set axis maxima
 
 ; Endstops
-M574 X1 Y1 Z0 S0 ; Define active low and unused microswitches
-M558 P1 X0 Y0 Z1 H5 F120 T6000 ; Set Z probe type to unmodulated, the axes for which it is used and the probe + travel speeds
-G31 P600 X0 Y0 Z2.5 ; Set Z probe trigger value, offset and trigger height
+M574 X1 Y1 Z1 S0 ; Define active low and unused microswitches
+; M558 P1 X0 Y0 Z1 H5 F120 T6000 ; Set Z probe type to unmodulated, the axes for which it is used and the probe + travel speeds
+; G31 P600 X0 Y0 Z2.5 ; Set Z probe trigger value, offset and trigger height
 M557 X15:195 Y15:195 S20 ; Define mesh grid
 
 ; Drives
 M569 P0 S1 ; Drive 0 goes forwards
 M569 P1 S0 ; Drive 1 goes backwards
 M569 P2 S1 ; Drive 2 goes forwards
-M569 P3 S0 ; Drive 3 goes backwards
-M350 X16 Y16 Z16 E16 I1 ; Configure microstepping with interpolation
-M92 X200 Y200 Z3200 E500 ; Set steps per mm
-M566 X900 Y900 Z12 E120 ; Set maximum instantaneous speed changes (mm/min)
-M203 X6000 Y6000 Z180 E1200 ; Set maximum speeds (mm/min)
-M201 X500 Y20 Z250 E250 ; Set accelerations (mm/s^2)
-M906 X800 Y800 Z800 E800 I30 ; Set motor currents (mA) and motor idle factor in per cent
+M569 P3 S1 ; Drive 3 goes forwards
+M350 X16 Y16 Z16 E16 I0 ; Configure microstepping with interpolation
+M92 X100 Y100 Z1600 E419 ; Set steps per mm
+M566 X900 Y900 Z120 E120 ; Set maximum instantaneous speed changes (mm/min)
+M203 X6000 Y6000 Z180 E100 ; Set maximum speeds (mm/min)
+M201 X50 Y50 Z250 E100 ; Set accelerations (mm/s^2)
+M906 X800 Y800 Z1600 E1800 I30 ; Set motor currents (mA) and motor idle factor in per cent
 M84 S30 ; Set idle timeout
 
 ; Heaters
@@ -42,6 +42,11 @@ G10 P0 X0 Y0 Z0 ; Set tool 0 axis offsets
 G10 P0 R0 S0 ; Set initial tool 0 active and standby temperatures to 0C
 
 ; Network
+
+;M552 P10.0.2.232					; IP address (0 = use DHCP)
+;M554 P10.0.2.1                ; Gateway
+;M553 P255.255.0.0                 ; Netmask
+
 M550 PMy printer ; Set machine name
 M552 S1 ; Enable network
 ; Access point is configured manually via M587 by the user
@@ -59,4 +64,4 @@ M106 P2 S1 I0 F500 H1 T45 ; Set fan 2 value, PWM signal inversion and frequency.
 ; BLTouch settings...
 M307 H3 A-1 C-1 D-1
 M558 P5 X0 Y0 Z1 H5 F100 T2000
-G31 X0 Y0 Z0 P25
+G31 X4 Y-40 Z3.4 P25
