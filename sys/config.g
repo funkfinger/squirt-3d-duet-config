@@ -28,7 +28,7 @@ M92 X100 Y100 Z1600 E419 ; Set steps per mm
 M566 X900 Y900 Z120 E120 ; Set maximum instantaneous speed changes (mm/min)
 M203 X6000 Y6000 Z180 E100 ; Set maximum speeds (mm/min)
 M201 X50 Y50 Z250 E100 ; Set accelerations (mm/s^2)
-M906 X800 Y800 Z1600 E1800 I30 ; Set motor currents (mA) and motor idle factor in per cent
+M906 X800 Y800 Z1400 E1800 I30 ; Set motor currents (mA) and motor idle factor in per cent
 M84 S30 ; Set idle timeout
 
 ; Heaters
@@ -47,8 +47,8 @@ G10 P0 R0 S0 ; Set initial tool 0 active and standby temperatures to 0C
 ;M554 P10.0.2.1                ; Gateway
 ;M553 P255.255.0.0                 ; Netmask
 
-M550 PMy printer ; Set machine name
-M552 S1 ; Enable network
+M550 PSquirt ; Set machine name
+;M552 S1 ; Enable network
 ; Access point is configured manually via M587 by the user
 M586 P0 S1 ; Enable HTTP
 M586 P1 S0 ; Disable FTP
@@ -65,3 +65,5 @@ M106 P2 S1 I0 F500 H1 T45 ; Set fan 2 value, PWM signal inversion and frequency.
 M307 H3 A-1 C-1 D-1
 M558 P5 X0 Y0 Z1 H5 F100 T2000
 G31 X4 Y-40 Z3.4 P25
+
+M84 S10 ; idle motors after 10 seconds
