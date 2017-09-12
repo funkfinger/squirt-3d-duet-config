@@ -5,3 +5,4 @@ SetNetwork
 *.gcode
 ._*
 *.bak
+.Spot*
