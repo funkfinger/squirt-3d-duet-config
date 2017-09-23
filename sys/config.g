@@ -25,9 +25,9 @@ M569 P2 S1 ; Drive 2 goes forwards
 M569 P3 S1 ; Drive 3 goes forwards
 M350 X16 Y16 Z16 E16 I0 ; Configure microstepping with interpolation
 M92 X100 Y100 Z1600 E419 ; Set steps per mm
-M566 X300 Y300 Z30 E20 ; Set maximum instantaneous speed changes (mm/min)
+M566 X200 Y200 Z30 E20 ; Set maximum instantaneous speed changes (mm/min)
 M203 X7000 Y7000 Z120 E500 ; Set maximum speeds (mm/min)
-M201 X70 Y70 Z80 E1000 ; Set accelerations (mm/s^2)
+M201 X700 Y700 Z80 E1000 ; Set accelerations (mm/s^2)
 ; M906 X400 Y400 Z1200 E1000 I30 ; Set motor currents (mA) and motor idle factor in per cent (e @ 1400 burned my finger)
 M906 X300 Y300 Z600 E800 I30 ; Set motor currents (mA) and motor idle factor in per cent (e @ 1400 burned my finger)
 M84 S30 ; Set idle timeout
@@ -68,6 +68,6 @@ M106 P2 S1 I0 F500 H1 T45 ; Set fan 2 value, PWM signal inversion and frequency.
 M307 H3 A-1 C-1 D-1
 M558 P5 X0 Y0 Z1 H5 F100 T2000
 ; G31 X60 Y-15 Z3.4 P25
-G31 X50 Y-15 Z2.25 P25
+G31 X50 Y-15 Z2.35 P25
 
 M84 S10 ; idle motors after 10 seconds
