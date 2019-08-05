@@ -9,8 +9,8 @@ G21 ; Work in millimetres
 G90 ; Send absolute coordinates...
 M83 ; ...but relative extruder moves
 M555 P1 ; Set firmware compatibility to look like RepRapFirmare
-M208 X5 Y15 Z0 S1 ; Set axis minima
-M208 X215 Y210 Z210 S0 ; Set axis maxima
+M208 X-10 Y-10 Z0 S1 ; Set axis minima
+M208 X200 Y190 Z200 S0 ; Set axis maxima
 
 ; Endstops
 M574 X1 Y1 Z1 S0 ; Define active low and unused microswitches
@@ -25,10 +25,10 @@ M569 P2 S1 ; Drive 2 goes forwards
 M569 P3 S1 ; Drive 3 goes forwards
 M350 X16 Y16 Z16 E16 I0 ; Configure microstepping with interpolation
 M92 X100 Y100 Z1600 E419 ; Set steps per mm
-M566 X200 Y200 Z30 E40 ; Set maximum instantaneous speed changes (mm/min)
-M203 X7000 Y7000 Z80 E600 ; Set maximum speeds (mm/min)
+M566 X200 Y200 Z80 E40 ; Set maximum instantaneous speed changes (mm/min)
+M203 X7000 Y7000 Z180 E600 ; Set maximum speeds (mm/min)
 M201 X700 Y700 Z80 E1000 ; Set acceleations (mm/s^2)
-M906 X350 Y350 Z700 E1100 I30 ; Set motor currents (mA) and motor idle factor in per cent (e @ 1400 burned my finger)
+M906 X350 Y350 Z700 E800 I30 ; Set motor currents (mA) and motor idle factor in per cent (e @ 1400 burned my finger)
 M84 S30 ; Set idle timeout
 
 ; Heaters
@@ -38,7 +38,7 @@ M305 P1 T100000 B4138 C0 R4700 ; Set thermistor + ADC parameters for heater 1
 
 ; Tools
 M563 P0 D0 H1 ; Define tool 0
-G10 P0 X0 Y0 Z0 ; Set tool 0 axis offsets
+G10 P0 X10 Y0 Z0 ; Set tool 0 axis offsets
 G10 P0 R0 S0 ; Set initial tool 0 active and standby temperatures to 0C
 
 ; Network
@@ -65,8 +65,16 @@ M106 P2 S1 I0 F500 H1 T45 ; Set fan 2 value, PWM signal inversion and frequency.
 
 ; BLTouch settings...
 M307 H3 A-1 C-1 D-1
-M558 P5 X0 Y0 Z1 H5 F100 T2000
-; G31 X60 Y-15 Z3.4 P25
-G31 X50 Y-15 Z2.2 P25
+M558 P9 H5 F100 T2000
+;G31 X0 Y0 Z0 P25
+G31 X50 Y-15 Z1.75 P25
+
+;M307 H3 A-1 C-1 D-1
+;M558 P5 X0 Y0 Z1 H5 F100 T2000
+;; G31 X60 Y-15 Z3.4 P25
+;G31 X50 Y-15 Z1.8 P25
 
 M84 S10 ; idle motors after 10 seconds
+
+;XXXXXXX fix this - allow axes to be moved without being homed
+M564 H0
