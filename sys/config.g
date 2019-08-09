@@ -1,3 +1,5 @@
+; duet wifi config 2019-08-06
+
 ; Configuration file for Duet WiFi (firmware version 1.17)
 ; executed by the firmware on start-up
 ;
@@ -9,14 +11,12 @@ G21 ; Work in millimetres
 G90 ; Send absolute coordinates...
 M83 ; ...but relative extruder moves
 M555 P1 ; Set firmware compatibility to look like RepRapFirmare
-M208 X-10 Y-10 Z0 S1 ; Set axis minima
-M208 X200 Y190 Z200 S0 ; Set axis maxima
+M208 X-5 Y-5 Z0 S1 ; Set axis minima
+M208 X210 Y200 Z200 S0 ; Set axis maxima
 
 ; Endstops
 M574 X1 Y1 Z1 S0 ; Define active low and unused microswitches
-; M558 P1 X0 Y0 Z1 H5 F120 T6000 ; Set Z probe type to unmodulated, the axes for which it is used and the probe + travel speeds
-; G31 P600 X0 Y0 Z2.5 ; Set Z probe trigger value, offset and trigger height
-M557 X15:210 Y15:210 S20 ; Define mesh g rid
+M557 X50:200 Y15:190 S30 ; Define mesh g rid
 
 ; Drives
 M569 P0 S1 ; Drive 0 goes forwards
@@ -24,11 +24,11 @@ M569 P1 S0 ; Drive 1 goes backwards
 M569 P2 S1 ; Drive 2 goes forwards
 M569 P3 S1 ; Drive 3 goes forwards
 M350 X16 Y16 Z16 E16 I0 ; Configure microstepping with interpolation
-M92 X100 Y100 Z1600 E419 ; Set steps per mm
+M92 X100 Y100 Z1600 E415 ; SET STEPS PER MM
 M566 X200 Y200 Z80 E40 ; Set maximum instantaneous speed changes (mm/min)
-M203 X7000 Y7000 Z180 E600 ; Set maximum speeds (mm/min)
-M201 X700 Y700 Z80 E1000 ; Set acceleations (mm/s^2)
-M906 X350 Y350 Z700 E800 I30 ; Set motor currents (mA) and motor idle factor in per cent (e @ 1400 burned my finger)
+M203 X7000 Y7000 Z180 E300 ; Set maximum speeds (mm/min)
+M201 X700 Y700 Z80 E200 ; Set acceleations (mm/s^2)
+M906 X300 Y350 Z700 E350 I30 ; Set motor currents (mA) and motor idle factor in per cent (e @ 1400 burned my finger)
 M84 S30 ; Set idle timeout
 
 ; Heaters
@@ -38,7 +38,7 @@ M305 P1 T100000 B4138 C0 R4700 ; Set thermistor + ADC parameters for heater 1
 
 ; Tools
 M563 P0 D0 H1 ; Define tool 0
-G10 P0 X10 Y0 Z0 ; Set tool 0 axis offsets
+G10 P0 X0 Y0 Z0 ; Set tool 0 axis offsets
 G10 P0 R0 S0 ; Set initial tool 0 active and standby temperatures to 0C
 
 ; Network
@@ -52,29 +52,25 @@ M551 Preprap ; Machine password (used when you connect Duet Web Control or via F
 M552 S1 ; Enable network
 ; Access point is configured manually via M587 by the user
 M586 P0 S1 ; Enable HTTP
-;M586 P1 S0 ; Disable FTP
 M586 P1 S1 ; R21 T1; Enable FTP
 M586 P2 S0 ; Disable Telnet
 
 ; Fans
 M106 P0 S0.3 I0 F500 H-1 ; Set fan 0 value, PWM signal inversion and frequency. Thermostatic control is turned off
-M106 P1 S1 I0 F500 H1 T45 ; Set fan 1 value, PWM signal inversion and frequency. Thermostatic control is turned on
-M106 P2 S1 I0 F500 H1 T45 ; Set fan 2 value, PWM signal inversion and frequency. Thermostatic control is turned on
+;M106 P1 S1 I0 F500 H1 T45 ; Set fan 1 value, PWM signal inversion and frequency. Thermostatic control is turned on
+;M106 P2 S1 I0 F500 H1 T45 ; Set fan 2 value, PWM signal inversion and frequency. Thermostatic control is turned on
+M106 P1 S0.5 I0 F500 H1 T45 ; Set fan 1 value, PWM signal inversion and frequency. Thermostatic control is turned on
+M106 P2 S0.5 I0 F500 H1 T45 ; Set fan 2 value, PWM signal inversion and frequency. Thermostatic control is turned on
 
 ; Custom settings
 
 ; BLTouch settings...
 M307 H3 A-1 C-1 D-1
-M558 P9 H5 F100 T2000
-;G31 X0 Y0 Z0 P25
-G31 X50 Y-15 Z1.75 P25
+M558 P9 H5 F100 T5000
 
-;M307 H3 A-1 C-1 D-1
-;M558 P5 X0 Y0 Z1 H5 F100 T2000
-;; G31 X60 Y-15 Z3.4 P25
-;G31 X50 Y-15 Z1.8 P25
+; G31 - Sets Z probe trigger value, offset and trigger height
+;       higher Z parameter pushes the first layer into the bed
+;       lower Z-parameter lifts it up
+G31 X45 Y-15 Z2.35 P25
 
 M84 S10 ; idle motors after 10 seconds
-
-;XXXXXXX fix this - allow axes to be moved without being homed
-M564 H0
