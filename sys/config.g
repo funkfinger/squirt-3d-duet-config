@@ -25,10 +25,10 @@ M569 P2 S1 ; Drive 2 goes forwards
 M569 P3 S1 ; Drive 3 goes forwards
 M350 X16 Y16 Z16 E16 I0 ; Configure microstepping with interpolation
 M92 X100 Y100 Z1600 E415 ; SET STEPS PER MM
-M566 X200 Y200 Z80 E40 ; Set maximum instantaneous speed changes (mm/min)
+M566 X100 Y100 Z80 E40 ; Set maximum instantaneous speed changes (mm/min)
 M203 X7000 Y7000 Z180 E300 ; Set maximum speeds (mm/min)
-M201 X700 Y700 Z80 E200 ; Set acceleations (mm/s^2)
-M906 X300 Y350 Z700 E350 I30 ; Set motor currents (mA) and motor idle factor in per cent (e @ 1400 burned my finger)
+M201 X300 Y300 Z80 E200 ; Set acceleations (mm/s^2)
+M906 X800 Y800 Z800 E350 I30 ; Set motor currents (mA) and motor idle factor in per cent (e @ 1400 burned my finger)
 M84 S30 ; Set idle timeout
 
 ; Heaters
@@ -40,12 +40,6 @@ M305 P1 T100000 B4138 C0 R4700 ; Set thermistor + ADC parameters for heater 1
 M563 P0 D0 H1 ; Define tool 0
 G10 P0 X0 Y0 Z0 ; Set tool 0 axis offsets
 G10 P0 R0 S0 ; Set initial tool 0 active and standby temperatures to 0C
-
-; Network
-
-;M552 P10.0.2.232					; IP address (0 = use DHCP)
-;M554 P10.0.2.1                ; Gateway
-;M553 P255.255.0.0                 ; Netmask
 
 M550 PSquirt ; Set machine name
 M551 Preprap ; Machine password (used when you connect Duet Web Control or via FTP)
@@ -74,3 +68,5 @@ M558 P9 H5 F100 T5000
 G31 X45 Y-15 Z2.35 P25
 
 M84 S10 ; idle motors after 10 seconds
+
+M915 X Y S5 R2 ; stall detetection on x and y - pause print if stalled
