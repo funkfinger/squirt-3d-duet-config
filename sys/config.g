@@ -65,7 +65,7 @@ M558 P9 H5 F100 T5000
 ; G31 - Sets Z probe trigger value, offset and trigger height
 ;       higher Z parameter pushes the first layer into the bed
 ;       lower Z-parameter lifts it up
-G31 X45 Y-15 Z2.15 P25
+G31 X45 Y-15 Z2.20 P25
 
 M84 S10 ; idle motors after 10 seconds
 
