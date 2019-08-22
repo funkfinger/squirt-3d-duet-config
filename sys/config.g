@@ -20,7 +20,7 @@ M557 X50:200 Y15:190 S30 ; Define mesh g rid
 
 ; Drives
 M569 P0 S1 ; Drive 0 goes forwards
-M569 P1 S0 ; Drive 1 goes backwards
+M569 P1 S1 ; Drive 1 goes forwards
 M569 P2 S1 ; Drive 2 goes forwards
 M569 P3 S1 ; Drive 3 goes forwards
 M350 X16 Y16 Z16 E16 I0 ; Configure microstepping with interpolation
