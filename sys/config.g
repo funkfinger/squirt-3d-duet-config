@@ -19,16 +19,16 @@ M574 X1 Y1 Z1 S0 ; Define active low and unused microswitches
 M557 X50:200 Y15:190 S30 ; Define mesh g rid
 
 ; Drives
-M569 P0 S1 ; Drive 0 goes forwards
-M569 P1 S1 ; Drive 1 goes forwards
-M569 P2 S1 ; Drive 2 goes forwards
-M569 P3 S1 ; Drive 3 goes forwards
+M569 P0 S1 ; Drive 0 goes forwards X
+M569 P1 S0 ; Drive 1 goes backwards Y
+M569 P2 S1 ; Drive 2 goes forwards Z
+M569 P3 S0 ; Drive 3 goes backwards Extruder
 M350 X16 Y16 Z16 E16 I0 ; Configure microstepping with interpolation
 M92 X100 Y100 Z1600 E415 ; SET STEPS PER MM
 M566 X200 Y200 Z80 E40 ; Set maximum instantaneous speed changes (mm/min)
 M203 X8000 Y8000 Z180 E300 ; Set maximum speeds (mm/min)
 M201 X900 Y900 Z80 E200 ; Set acceleations (mm/s^2)
-M906 X800 Y800 Z800 E550 I30 ; Set motor currents (mA) and motor idle factor in per cent (e @ 1400 burned my finger)
+M906 X800 Y800 Z800 E350 I30 ; Set motor currents (mA) and motor idle factor in per cent (e @ 1400 burned my finger)
 M84 S30 ; Set idle timeout
 
 ; Heaters
@@ -69,5 +69,7 @@ G31 X45 Y-15 Z2.20 P25
 
 M84 S10 ; idle motors after 10 seconds
 
-M915 X Y S5 R2 ; stall detetection on x and y - pause print if stalled
-               ; Snnn Stall detection threshold (-64 to +63, values below -10 not recommended)
+M915 X Y S10 R1 ; stall detetection on x and y - pause print if stalled
+                ; Snnn Stall detection threshold (-64 to +63, values below -10 not recommended)
+                ; Rn Action to take on detecting a stall from any of these drivers: 0 = no action (default)
+                ;   1 = just log it, 2 = pause print, 3 = pause print, execute macro file /sys/rehome.g, and resume print
