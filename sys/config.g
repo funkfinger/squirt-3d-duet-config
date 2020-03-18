@@ -65,7 +65,7 @@ M558 P9 H5 F100 T5000
 ; G31 - Sets Z probe trigger value, offset and trigger height
 ;       higher Z parameter pushes the first layer into the bed
 ;       lower Z-parameter lifts it up
-G31 X45 Y-15 Z2.20 P25
+G31 X45 Y-15 Z2.10 P25
 
 M84 S10 ; idle motors after 10 seconds
 
@@ -73,3 +73,6 @@ M915 X Y S10 R1 ; stall detetection on x and y - pause print if stalled
                 ; Snnn Stall detection threshold (-64 to +63, values below -10 not recommended)
                 ; Rn Action to take on detecting a stall from any of these drivers: 0 = no action (default)
                 ;   1 = just log it, 2 = pause print, 3 = pause print, execute macro file /sys/rehome.g, and resume print
+
+; load sys/config-override.g
+M501
